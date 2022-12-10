@@ -1,0 +1,37 @@
+{
+  "name": "mdp-indexofgames",
+  "version": "1.0.0",
+  "description": "The Index Of Games hits desktop! This is the Electron Client that allows you to run the Index Of Games via .deb or .exe files locally.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MinoDab492/MDP-IndexOfGames-ElectronClient.git"
+  },
+  "keywords": [
+    "IndexOfGames",
+    "MinoDabProductions",
+    "Electron"
+  ],
+  "author": "MinoDab492",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/MinoDab492/MDP-IndexOfGames-ElectronClient/issues"
+  },
+  "homepage": "https://github.com/MinoDab492/MDP-IndexOfGames-ElectronClient#readme",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.4",
+    "@electron-forge/maker-deb": "^6.0.4",
+    "@electron-forge/maker-rpm": "^6.0.4",
+    "@electron-forge/maker-squirrel": "^6.0.4",
+    "@electron-forge/maker-zip": "^6.0.4",
+    "electron": "^22.0.0"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  }
+}
