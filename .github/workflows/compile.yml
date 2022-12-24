@@ -1,38 +1,31 @@
-name: Compile
+name: Build/release
 
-on:
-  - push
-  - workflow_dispatch
+on: push
 
 jobs:
-  test:
-    name: Compile Electron Client
+  release:
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
-        package_manager: [npm, yarn]
-        package_root: ["."]
 
     steps:
-      
       - name: Check out Git repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v1
 
-      - name: Set up Node.js
+      - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v1
         with:
-          node-version: 14.17.5
+          node-version: 16
 
-      - name: Install test app dependencies
-        run: |
-          cd ${{ matrix.package_root }}
-          ${{ matrix.package_manager }} install
-      - name: Run action
-        uses: ./
+      - name: Build/release Electron app
+        uses: paneron/action-electron-builder@v1.8.1
         with:
+          # GitHub token, automatically provided to the action
+          # (No need to define this secret in the repo settings)
           github_token: ${{ secrets.github_token }}
-          package_root: ${{ matrix.package_root }}
-          use_vue_cli: ${{ contains(matrix.package_root, 'vue')}}
-          max_attempts: "2"
+
+          # If the commit is tagged with a version (e.g. "v1.0.0"),
+          # release the app after building
+          release: ${{ startsWith(github.ref, 'refs/tags/v') }}
