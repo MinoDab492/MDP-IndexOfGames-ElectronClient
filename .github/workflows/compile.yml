@@ -50,16 +50,10 @@ jobs:
           command -v python3 || :
           echo "PYTHON_ENV=$(command -v python)" >> $GITHUB_OUTPUT
       - name: Run action
-        uses: samuelmeuli/action-electron-builder@v1
+        uses: minodab492/action-electron-builder@v1
         with:
           package_manager: ${{ matrix.package_manager }}
           github_token: ${{ secrets.github_token }}
           package_root: ${{ matrix.package_root }}
           use_vue_cli: ${{ contains(matrix.package_root, 'vue')}}
           max_attempts: "2"
-          
-      - name: Cache files for upload to releases
-        uses: actions/cache@v3.2.1
-        with:
-          path: /home/runner/work/MDP-IndexOfGames-ElectronClient/MDP-IndexOfGames-ElectronClient/dist/
-          key: 123456789123456789
