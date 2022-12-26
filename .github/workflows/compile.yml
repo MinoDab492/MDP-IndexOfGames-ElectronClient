@@ -62,3 +62,4 @@ jobs:
         uses: actions/cache@v3.2.1
         with:
           path: /home/runner/work/MDP-IndexOfGames-ElectronClient/MDP-IndexOfGames-ElectronClient/dist/
+          key: 123456789123456789
