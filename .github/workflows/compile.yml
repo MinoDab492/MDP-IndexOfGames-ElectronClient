@@ -57,3 +57,9 @@ jobs:
           package_root: ${{ matrix.package_root }}
           use_vue_cli: ${{ contains(matrix.package_root, 'vue')}}
           max_attempts: "2"
+          
+      - name: Cache files for upload to releases
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: /home/runner/work/MDP-IndexOfGames-ElectronClient/MDP-IndexOfGames-ElectronClient/dist/
