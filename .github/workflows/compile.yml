@@ -1,12 +1,6 @@
 name: Build & Release
 
-on:
-  push:
-    branches:
-      - main
-    tags:
-      - v*
-  pull_request:
+on: workflow_dispatch
 
 jobs:
   test:
@@ -28,12 +22,6 @@ jobs:
           cache: yarn
       - name: Install
         run: yarn --frozen-lockfile --network-timeout 100000 || yarn --frozen-lockfile --network-timeout 100000 || yarn --frozen-lockfile --network-timeout 100000
-      - name: Create fake contributors
-        uses: 1arp/create-a-file-action@0.2
-        with:
-          path: 'static'
-          file: 'contributors.json'
-          content: "[]"
       - name: lint
         run: yarn lint
       - name: test
